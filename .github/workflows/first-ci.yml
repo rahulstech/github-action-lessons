@@ -1,0 +1,16 @@
+name: First CI
+
+on:
+ push: 
+  branches: ["master"]
+
+jobs:
+ test:
+  runs-on: ubuntu-latest
+
+  steps:
+   - name: Checkout code
+     uses: actions/checkout@v4
+
+   - name: Run a command
+     run: echo "Learning Github Action"
