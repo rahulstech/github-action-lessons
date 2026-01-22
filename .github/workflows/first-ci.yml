@@ -1,16 +1,16 @@
-name: First CI
+name: First CI # name of action
 
-on:
+on: # specify the event to trigger this action
  push: 
-  branches: ["master"]
+  branches: ["master"] # trigger this action when something pushed in master branch
 
 jobs:
- test:
-  runs-on: ubuntu-latest
+ test: # job name
+  runs-on: ubuntu-latest # job runner
 
   steps:
    - name: Checkout code
-     uses: actions/checkout@v4
+     uses: actions/checkout@v4 # use this predefined steps
 
    - name: Run a command
-     run: echo "Learning Github Action"
+     run: echo "Learning Github Action" # execute on shell
