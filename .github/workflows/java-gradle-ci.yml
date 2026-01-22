@@ -17,6 +17,7 @@ jobs:
         with:
           distribution: 'temurin' # temurin = open-jdk
           java-version: '21'
+          cache: 'gradle' # cache the gradle dependencies to avoid downloading on each run
 
       - name: Make gradlew executable
         run: chmod +x gradlew
