@@ -6,3 +6,5 @@ fun main(vararg args: String) {
 }
 
 fun getGreeting(name: String): String = "Hello, $name!"
+
+fun sum(a: Int, b: Int): Int = a + b

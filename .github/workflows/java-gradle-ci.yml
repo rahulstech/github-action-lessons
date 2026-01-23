@@ -25,18 +25,27 @@ jobs:
       - name: Run app unit tests
         run: ./gradlew app:test
 
-      # upload artifact step must run after the artifact creation step
-      # here I am creating the test report artifact which generates after
-      # test. so, upload artifact step comes after unit test running step
-      - name: Upload test reports
-        # by default this step runs when previous steps run successfully;
-        # but I want fail test reports too. the following line ensures the
-        # following step will always run even if the previous step fails.
+      # the following action will show the successful and failure tests in the Actions tab.
+      # no need to download test report artifacts and show results manually.
+      - name: Generate test report
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: mkikepenz/action-junit-report@v4 # this action helps to parse the test results
         with:
-          name: test-report
-          # gradle stores human-readable test reports under the following path
-          # the upload-artifact action stores the content of the path for certain
-          # number of days (by default 90 days) even after the action finishes.
-          path: app/build/reports/tests
+          # I need the TEST-*.xml files only.
+          report_path: app/build/test-results/test/TEST-*.xml
+
+#      # upload artifact step must run after the artifact creation step
+#      # here I am creating the test report artifact which generates after
+#      # test. so, upload artifact step comes after unit test running step
+#      - name: Upload test reports
+#        # by default this step runs when previous steps run successfully;
+#        # but I want fail test reports too. the following line ensures the
+#        # following step will always run even if the previous step fails.
+#        if: always()
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: test-report
+#          # gradle stores human-readable test reports under the following path
+#          # the upload-artifact action stores the content of the path for certain
+#          # number of days (by default 90 days) even after the action finishes.
+#          path: app/build/reports/tests
