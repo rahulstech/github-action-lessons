@@ -22,5 +22,21 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x gradlew
 
-      - name: Run unit app unit tests
+      - name: Run app unit tests
         run: ./gradlew app:test
+
+      # upload artifact step must run after the artifact creation step
+      # here I am creating the test report artifact which generates after
+      # test. so, upload artifact step comes after unit test running step
+      - name: Upload test reports
+        # by default this step runs when previous steps run successfully;
+        # but I want fail test reports too. the following line ensures the
+        # following step will always run even if the previous step fails.
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-report
+          # gradle stores human-readable test reports under the following path
+          # the upload-artifact action stores the content of the path for certain
+          # number of days (by default 90 days) even after the action finishes.
+          path: build/reports/tests/index.html

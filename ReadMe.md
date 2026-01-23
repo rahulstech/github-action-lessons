@@ -10,3 +10,12 @@
  - `run` used when executing a shell command
 
 **IMPORTANT** github workflows are saved under `$projectRoot/.github/workflows/name-of-workflow.yml`
+
+
+## Learning Outcome
+
+- Copy current branch content to the runner using **actions/checkout@v4**
+- Setup java open-jdk 21 (temurin-21) using **actions/setup-java@v4**
+- Run `gradle` test
+- Cache gradle dependencies for future use
+- Upload artifact using **actions/upload-artifact@v4**
