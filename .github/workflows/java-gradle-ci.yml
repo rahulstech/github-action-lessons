@@ -4,6 +4,12 @@ on:
   push:
     branches: ["master"]
 
+#  mikepenz/action-junit-report@v4 needs permission to create or update GitHub Check Runs
+#  in order to publish test annotations. Since GitHub Actions workflows run with a restricted
+#  GITHUB_TOKEN by default, I must explicitly grant checks: write permission to allow this.
+permissions:
+  checks: write
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -32,7 +38,7 @@ jobs:
         uses: mikepenz/action-junit-report@v4 # this action helps to parse the test results
         with:
           # I need the TEST-*.xml files only.
-          report_path: app/build/test-results/test/TEST-*.xml
+          report_paths: app/build/test-results/test/TEST-*.xml
 
 #      # upload artifact step must run after the artifact creation step
 #      # here I am creating the test report artifact which generates after
