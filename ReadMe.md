@@ -19,3 +19,4 @@
 - Run `gradle` test
 - Cache gradle dependencies for future use
 - Upload artifact using **actions/upload-artifact@v4**
+- Parsing test report using **mikepenz/action-junit-report@v4**

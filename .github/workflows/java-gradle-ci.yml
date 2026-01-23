@@ -29,7 +29,7 @@ jobs:
       # no need to download test report artifacts and show results manually.
       - name: Generate test report
         if: always()
-        uses: mkikepenz/action-junit-report@v4 # this action helps to parse the test results
+        uses: mikepenz/action-junit-report@v4 # this action helps to parse the test results
         with:
           # I need the TEST-*.xml files only.
           report_path: app/build/test-results/test/TEST-*.xml
