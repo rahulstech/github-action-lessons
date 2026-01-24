@@ -3,6 +3,8 @@ name: Simple Java Gradle app workflow
 on:
   push:
     branches: ["master"]
+  pull_request:
+    branches: ["master"]
 
 #  mikepenz/action-junit-report@v4 needs permission to create or update GitHub Check Runs
 #  in order to publish test annotations. Since GitHub Actions workflows run with a restricted
